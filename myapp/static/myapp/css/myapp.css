@@ -1,0 +1,27 @@
+.stfont{
+    font-family: "Satisfy", cursive;
+}
+
+
+a.nav-link {
+    color: #ccc; 
+    font-weight: normal; 
+    text-decoration: none;
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    transition: background-color 0.3s ease, font-weight 0.3s ease; 
+}
+
+
+a.nav-link:hover {
+    background-color: #17a2b8; 
+    color: white; 
+    font-weight: bold; 
+}
+
+
+a.nav-link:active, a.nav-link.active {
+    background-color: #17a2b8; 
+    color: white; 
+    font-weight: bold; 
+}

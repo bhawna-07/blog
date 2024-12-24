@@ -1,0 +1,130 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #85a3cc, #39698a, #95a4b8, #bfcce6);
+            background-size: 300% 300%;
+            animation: gradientShift 10s infinite ease-in-out;
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Form container styling */
+        .form-container {
+            width: 90%;
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .form-container h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .form-container label {
+            font-size: 0.9rem;
+            font-weight: 550;
+            color: #f0eaea;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container input:focus {
+            outline: none;
+            border-color: #85a3cc;
+            box-shadow: 0 0 10px rgba(133, 163, 204, 0.5);
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #f3a8b8, #8ca2c9);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-container button:hover {
+            background: linear-gradient(90deg, #ff9d9d, #a6b7c8);
+            transform: scale(1.05);
+        }
+
+        .form-container a {
+            display: block;
+            margin-top: 15px;
+            color: #39698a;
+            font-weight: 550;
+            text-decoration: none;
+        }
+
+        .form-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>Sign Up</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for fields in form %}
+            <label>{{ fields.label_tag }}</label>
+            {{ fields }}
+            <div style="color: red; font-size: 0.9rem;">{{ fields.errors }}</div>
+            {% endfor %}
+            <button type="submit">Submit</button>
+        </form>
+        <a href="{% url 'login' %}">Already registered? Login here</a>
+    </div>
+</body>
+
+</html>
+{% endblock %}

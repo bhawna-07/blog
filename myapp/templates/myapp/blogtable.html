@@ -1,0 +1,227 @@
+{% extends 'myapp/base.html'%}
+{% block content %}
+
+<div style="position: relative; margin: 20px; text-align: right;">
+    <a href="{% url 'logout' %}" class="button-link">
+        <button type="button" class="button">Logout</button>
+    </a>
+</div>
+
+<div class="blog-table-container">
+    <h1 class="glow-title">All Blogs</h1>
+    <table class="blog-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for blog in blog %}
+            <tr>
+                <td>{{ blog.id }}</td>
+                <td><a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a></td>
+                <td>{{ blog.author }}</td>
+                <td>{{ blog.date }}</td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="button-container">
+        <a href="{% url 'create' %}" class="button-link">
+            <button type="button" class="button">CREATE BLOG</button>
+        </a>
+    </div>
+</div>
+
+
+<style>
+     body {
+        background: linear-gradient(135deg, #85a3cc, #39698a, #95a4b8, #bfcce6);
+       
+    }
+    /* Gradient Background */
+    /* Blog Table Container */
+    .blog-table-container {
+        margin: 40px auto;
+        /* Reduced margin to prevent excessive space */
+        padding: 30px;
+        /* Adjusted padding for balance */
+        width: 85%;
+        /* Slightly reduced width */
+        max-width: 1000px;
+        /* Ensures consistent size across screens */
+        background: rgba(0, 0, 0, 0.85);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Logout Button Styling */
+    .button-link {
+        text-decoration: none;
+    }
+
+  /* Logout Button Container */
+div[style*="text-align: right"] {
+    margin: 10px 20px 0; /* Ensure spacing from edges */
+}
+
+/* Logout Button */
+.button {
+    padding: 14px 28px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 350px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.4s ease;
+    background: linear-gradient(90deg, #ff007f, #6a82fb);
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
+    animation: buttonGlow 2s infinite alternate;
+    margin: 0; /* Remove unwanted margins */
+}
+
+.button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(90deg, #ff1c8a, #818cf8);
+}
+
+/* Reuse Glow Animation */
+@keyframes buttonGlow {
+    0% {
+        box-shadow: 0 0 15px #ff007f, 0 0 20px #6a82fb;
+    }
+    100% {
+        box-shadow: 0 0 25px #ff1c8a, 0 0 30px #818cf8;
+    }
+}
+
+
+
+    @keyframes gradientShift {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    /* Blog Table Container */
+    .blog-table-container {
+        margin: 20px auto;
+        padding: 30px;
+        width: 90%;
+        max-width: 1100px;
+        background: rgba(0, 0, 0, 0.85);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Glowy Title */
+    .glow-title {
+        font-size: 3rem;
+        color: #eadbdb;
+        text-align: center;
+        font-family: 'Raleway', sans-serif;
+        margin-bottom: 30px;
+        font-weight: bold;
+        text-shadow: 0 0 8px #ffffff, 0 0 12px #f184bb, 0 0 20px #ff007f;
+        animation: glowEffect 2s infinite alternate;
+    }
+
+    @keyframes glowEffect {
+        0% {
+            text-shadow: 0 0 8px #fff, 0 0 12px #ff007f, 0 0 20px #ff007f;
+        }
+
+        100% {
+            text-shadow: 0 0 10px #ff1c8a, 0 0 15px #ff1c8a, 0 0 25px #ff1c8a;
+        }
+    }
+
+    /* Table Styling */
+    .blog-table {
+        width: 100%;
+        margin-top: 30px;
+        border-collapse: collapse;
+        color: #fff;
+    }
+
+    .blog-table th,
+    .blog-table td {
+        padding: 15px;
+        text-align: center;
+        border: 1px solid #444;
+        font-size: 1.1rem;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .blog-table th {
+        background-color: #6a82fb;
+    }
+
+    .blog-table tr:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .blog-table tr:hover {
+        background-color: #1e3a8a;
+        cursor: pointer;
+        transform: scale(1.03);
+    }
+
+    /* Button Container */
+    .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    /* Buttons */
+    .button {
+        padding: 14px 28px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #fff;
+        border: none;
+        border-radius: 350px;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.4s ease;
+        background: linear-gradient(90deg, #ff007f, #6a82fb);
+        box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
+        animation: buttonGlow 2s infinite alternate;
+    }
+
+    .button:hover {
+        transform: scale(1.1);
+        background: linear-gradient(90deg, #ff1c8a, #818cf8);
+    }
+
+    .button-link {
+        text-decoration: none;
+    }
+
+    @keyframes buttonGlow {
+        0% {
+            box-shadow: 0 0 15px #ff007f, 0 0 20px #6a82fb;
+        }
+
+        100% {
+            box-shadow: 0 0 25px #ff1c8a, 0 0 30px #818cf8;
+        }
+    }
+</style>
+{% endblock %}

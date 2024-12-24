@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Blog</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #85a3cc, #39698a, #95a4b8, #bfcce6);
+            background-size: 300% 300%;
+            animation: gradientShift 8s infinite ease-in-out;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Blog Container */
+        .create-blog-container {
+            margin: 60px auto;
+            padding: 40px;
+            width: 85%;
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Glowy Title */
+        .glow-title {
+            font-size: 3rem;
+            color: #eadbdb;
+            text-align: center;
+            font-family: 'Raleway', sans-serif;
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-shadow: 0 0 8px #ffffff, 0 0 12px #73073d, 0 0 20px #5a0530;
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        form label {
+            color: #f9f2ea; /* Creamish color */
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        form input, form textarea {
+            padding: 15px;
+            font-size: 1.1rem;
+            border: 2px solid #444;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box; /* Ensures consistent box dimensions */
+        }
+
+        form input, form textarea {
+            margin: 0; /* Remove any default margin to align perfectly */
+        }
+
+        /* Align Fields */
+        form p {
+            margin: 0;
+            padding: 0;
+        }
+
+        form p > label, 
+        form p > input, 
+        form p > textarea {
+            display: block; /* Align items vertically */
+            width: 100%; /* Full-width alignment */
+        }
+
+        /* Button Container */
+        .button-container {
+            display: flex;
+            justify-content: space-between;  /* Buttons aligned with space between */
+            gap: 10px;  /* Reduced gap to bring buttons closer */
+            margin-top: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px; /* Matching padding for both buttons */
+            font-size: 1.1rem; /* Similar size for text */
+            font-weight: bold;
+            color: #fff;
+            border: none;
+            border-radius: 80px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.4s ease;
+            width: 40%; /* Both buttons take up equal width */
+        }
+
+        .publish-btn {
+            background: linear-gradient(90deg, #ff007f, #6a82fb);
+        }
+
+        .publish-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #ff1c8a, #818cf8);
+        }
+
+        .view-blogs-btn {
+            background: linear-gradient(90deg, #6a82fb, #ff007f);
+            text-decoration: none;
+        }
+
+        .view-blogs-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #6a82fb, #ff007f);
+        }
+    </style>
+</head>
+<body>
+    <div class="create-blog-container">
+        <h1 class="glow-title">Update Your Blog</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="button-container">
+                <button type="submit" class="btn publish-btn">Submit</button>
+                <a href="{% url 'blog_detail' pi.id %}" class="btn view-blogs-btn">Back to Blog Page</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

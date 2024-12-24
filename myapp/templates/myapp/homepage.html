@@ -1,0 +1,212 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Montserrat:wght@400&display=swap"
+        rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #5f7ca4, #39698a, #95a4b8, #bfcce6);
+            background-size: 300% 300%;
+            animation: gradientShift 10s infinite ease-in-out;
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo h2 {
+            font-size: 2rem;
+            font-family: 'Raleway', sans-serif;
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #f3a8b8, #8ca2c9);
+            transition: all 0.4s ease;
+        }
+
+        .nav-links a:hover {
+            background: linear-gradient(90deg, #ff9d9d, #a6b7c8);
+            transform: scale(1.1);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            margin: 50px auto;
+            max-width: 900px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-family: 'Raleway', sans-serif;
+            color: #fffbfb;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s, transform 0.8s ease-in-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #fff7f7;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s, transform 0.8s ease-in-out;
+        }
+
+        .hero .cta {
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            color: #ffffff;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s, transform 0.8s ease-in-out;
+        }
+
+        .section {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 50px 20px;
+            margin: 30px auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s, transform 0.8s ease-in-out;
+        }
+
+        .section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .section img {
+            width: 500px;
+            height: 500px;
+            border-radius: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+       
+        .section img:hover {
+            transform: scale(1.05);
+        }
+
+        .text {
+            max-width: 500px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #444;
+            font-weight: 600;
+            /* Slightly bolder text */
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .fade-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h2>BLOG.COM</h2>
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'signup' %}">Sign Up</a>
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to Your Creative Space</h1>
+        <p>Share your passion, creativity, and ideas with the world.</p>
+        <div class="cta">SIGNUP to create and see the blogs !</div>
+    </section>
+
+    <section class="section">
+        <img src="{% static 'myapp/images/img1.png' %}" alt="Inspiration">
+        <div class="text">
+            <p>Unlock your potential by sharing stories that inspire and resonate.</p>
+            <p>Your words can create change and connect people globally.</p>
+        </div>
+    </section>
+
+    <section class="section" >
+        <img src="{% static 'myapp/images/img2.png' %}" alt="Create">
+        <div class="text">
+            <p>Express yourself freely. Write, create, and make an impact.</p>
+            <p>Your imagination is the only limit to what you can achieve.</p>
+        </div>
+    </section>
+
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        });
+
+        document.querySelectorAll('.hero h1, .hero p, .hero .cta, .section').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
+{% endblock %}

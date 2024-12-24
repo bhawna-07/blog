@@ -1,0 +1,154 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+<div class="create-blog-container">
+    <h1 class="glow-title">Create Your Blog</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="button-container">
+            <button type="submit" class="btn publish-btn">Publish</button>
+            <a href="{% url 'table' %}" class="btn view-blogs-btn">See All Blogs</a>
+        </div>
+    </form>
+</div>
+
+<style>
+    /* Gradient Background */
+    body {
+        background: linear-gradient(135deg, #85a3cc, #39698a, #95a4b8, #bfcce6);
+        background-size: 300% 300%;
+        animation: gradientShift 8s infinite ease-in-out;
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Blog Container */
+    .create-blog-container {
+        margin: 60px auto;
+        padding: 40px;
+        width: 85%;
+        max-width: 800px;
+        background: rgba(0, 0, 0, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Glowy Title */
+    .glow-title {
+        font-size: 3rem;
+        color: #eadbdb;
+        text-align: center;
+        font-family: 'Raleway', sans-serif;
+        margin-bottom: 30px;
+        font-weight: bold;
+        text-shadow: 0 0 8px #ffffff, 0 0 12px #f184bb, 0 0 20px #f892c5;
+        animation: glowEffect 2s infinite alternate;
+    }
+
+    @keyframes glowEffect {
+        0% { text-shadow: 0 0 8px #fff, 0 0 12px #ff007f, 0 0 20px #ff007f; }
+        100% { text-shadow: 0 0 10px #ff1c8a, 0 0 15px #ff1c8a, 0 0 25px #ff1c8a; }
+    }
+
+    /* Form Styling */
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    form label {
+        color: #f9f2ea; /* Creamish color */
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    form input, form textarea {
+        padding: 15px;
+        font-size: 1.1rem;
+        border: 2px solid #444;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        outline: none;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    form input:focus, form textarea:focus {
+        border-color: #fffeff;
+        box-shadow: 0 0 10px #fbcfe5;
+    }
+
+    form input:hover, form textarea:hover {
+        transform: scale(1.02);
+    }
+
+    /* Button Container */
+    .button-container {
+        display: flex;
+        justify-content: space-between;  /* Buttons aligned with space between */
+        gap: 10px;  /* Reduced gap to bring buttons closer */
+        margin-top: 20px;
+    }
+
+    /* Buttons */
+    .btn {
+        display: inline-block;
+        padding: 12px 25px; /* Matching padding for both buttons */
+        font-size: 1.1rem; /* Similar size for text */
+        font-weight: bold;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.4s ease;
+        width: 50%;
+    }
+
+    .publish-btn {
+        background: linear-gradient(90deg, #ff007f, #6a82fb);
+        animation: buttonGlow 2s infinite alternate;
+    }
+
+    .publish-btn:hover {
+        transform: scale(1.05);
+        background: linear-gradient(90deg, #ff1c8a, #818cf8);
+    }
+
+    .view-blogs-btn {
+        background: linear-gradient(90deg, #6a82fb, #ff007f);
+        text-decoration: none;
+    }
+
+    .view-blogs-btn:hover {
+        transform: scale(1.05);
+        background: linear-gradient(90deg, #6a82fb, #ff007f);
+    }
+
+    @keyframes buttonGlow {
+        0% { box-shadow: 0 0 10px #ff007f, 0 0 20px #6a82fb; }
+        100% { box-shadow: 0 0 15px #ff1c8a, 0 0 25px #818cf8; }
+    }
+
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(-10px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}
